@@ -1,8 +1,21 @@
-public Vessel getVesselById(String vesselId) {
+public List<Vessel> getHighPerformanceVessels() {
+
+    List<Vessel> highPerformanceList = new ArrayList<>();
+    double maxSpeed = 0;
+
+    // Find maximum speed
     for (Vessel v : vesselList) {
-        if (v.getVesselId().equals(vesselId)) {
-            return v;
+        if (v.getAverageSpeed() > maxSpeed) {
+            maxSpeed = v.getAverageSpeed();
         }
     }
-    return null;
+
+    // Collect vessels with max speed
+    for (Vessel v : vesselList) {
+        if (v.getAverageSpeed() == maxSpeed) {
+            highPerformanceList.add(v);
+        }
+    }
+
+    return highPerformanceList;
 }
